@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function prom(complete) {
+    return new Promise(function(resolve, reject) {
+        if (complete) {
+            resolve("I am successful.");
+        } else {
+            reject("I am failed.");
+        }
+    });
+}
+console.log(prom(true));
+
+
+function prom(complete) {
+    return new Promise(function(resolve, reject) {
+        console.log("Fetching data, please wait.");
+        setTimeout(function() {
+            if (complete) {
+                resolve("I am successful.");
+            } else {
+                reject("I am failed.");
+            }
+        }, 3000);
+    });
+}
+
+prom(true)
+    .then(function(result) {
+        console.log(result);
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+
+
+// Promise.all
+let first_promise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve("Resolved First after 1 second");
+	}, 1000);
+});
+
+let second_promise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve("Resolved First after 2 seconds");
+	}, 2000);
+});
+
+let third_promise = new Promise((resolve, reject) => {
+	setTimeout(() => {
+		resolve("Resolved First after 3 seconds");
+	}, 3000);
+});
+
+try {
+	let result = Promise.all([first_promise, second_promise, third_promise]);
+	result.then((data) => console.log(data));
+} catch (error) {
+	console.log(error);
+}
+
+// This code is contributed by Aman Singla...
+
+</script>
+<body>
+    
+</body>
+</html>
